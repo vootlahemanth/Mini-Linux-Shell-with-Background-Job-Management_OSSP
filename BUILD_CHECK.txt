@@ -1,0 +1,2 @@
+C build PASS
+gcc -Wall -Wextra -Wpedantic -std=c11 -D_POSIX_C_SOURCE=200809L -O2 -o mini_shell src/mini_shell.c

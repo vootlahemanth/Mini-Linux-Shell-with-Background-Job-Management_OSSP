@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mini Linux Shell | Process Control Center</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-icon">$_</div><div><strong>MiniShell</strong><small>PROCESS CONTROL</small></div></div>
+      <div class="nav-label">WORKSPACE</div>
+      <button class="nav-item active" data-panel="terminal"><span>⌘</span> Terminal</button>
+      <button class="nav-item" data-panel="jobs"><span>▦</span> Background jobs</button>
+      <button class="nav-item" data-panel="activity"><span>≋</span> Activity log</button>
+      <div class="sidebar-bottom"><span class="status-dot"></span><span>Local engine</span><small id="healthText">Checking…</small></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><div><div class="eyebrow">LINUX SYSTEMS / HACKATHON</div><h1 id="pageTitle">Terminal</h1></div><div class="top-actions"><span class="pill"><i></i> LOCAL DEMO</span><button class="icon-button" id="refreshBtn" title="Refresh">↻</button></div></header>
+      <section class="metrics">
+        <article class="metric-card"><div class="metric-head">Tracked jobs <span>▦</span></div><strong id="metricTotal">0</strong><small>All sessions</small></article>
+        <article class="metric-card"><div class="metric-head">Running <span class="green">●</span></div><strong id="metricRunning">0</strong><small>Active processes</small></article>
+        <article class="metric-card"><div class="metric-head">Completed <span>✓</span></div><strong id="metricCompleted">0</strong><small>Finished jobs</small></article>
+        <article class="metric-card"><div class="metric-head">Engine <span>⌁</span></div><strong class="engine-label">POSIX</strong><small>Process management</small></article>
+      </section>
+      <section class="panel" id="terminalPanel">
+        <div class="panel-heading"><div><h2>Interactive terminal</h2><p>Run allowlisted Linux commands in a controlled workspace.</p></div><span class="live-label"><i></i> READY</span></div>
+        <div class="terminal-window">
+          <div class="terminal-title"><div class="traffic"><i></i><i></i><i></i></div><span>mini-shell — local session</span><button id="clearBtn">Clear output</button></div>
+          <div id="terminalOutput" class="terminal-output" aria-live="polite"><div class="welcome"> <span class="prompt-mark">●</span> Mini Linux Shell with Background Job Management</div><div class="muted-line">Type <b>help</b> to see supported commands. Use background mode for long-running jobs.</div></div>
+          <form id="commandForm" class="command-form"><label for="commandInput"><span class="prompt-symbol">hemanth@minishell:~$</span></label><input id="commandInput" autocomplete="off" placeholder="Enter command, e.g. pwd" maxlength="500" required><button class="run-button" type="submit">Run command <span>↗</span></button></form>
+          <div class="terminal-options"><label class="toggle-row"><input id="backgroundToggle" type="checkbox"><span class="toggle"></span><span>Run in background</span></label><span>Enter to execute · Ctrl+L to clear</span></div>
+        </div>
+        <div class="quick-commands"><span>QUICK COMMANDS</span><button data-command="pwd">pwd</button><button data-command="date">date</button><button data-command="whoami">whoami</button><button data-command="ls">ls</button><button data-command="sleep 30">sleep 30</button><button data-command="help">help</button></div>
+      </section>
+      <section class="panel hidden" id="jobsPanel">
+        <div class="panel-heading"><div><h2>Background jobs</h2><p>Inspect process IDs, execution state, and captured output.</p></div><button class="secondary-button" id="jobsRefresh">↻ Refresh jobs</button></div>
+        <div class="table-wrap"><table><thead><tr><th>JOB</th><th>COMMAND</th><th>PID</th><th>STATUS</th><th>STARTED</th><th>ACTION</th></tr></thead><tbody id="jobsBody"><tr><td colspan="6" class="empty">No jobs yet. Start one from Terminal.</td></tr></tbody></table></div>
+        <div class="note"><b>Process safety</b><span>Stop sends SIGTERM only to a process group created and tracked by this demo.</span></div>
+      </section>
+      <section class="panel hidden" id="activityPanel">
+        <div class="panel-heading"><div><h2>Activity log</h2><p>Recent command and process lifecycle events.</p></div><button class="secondary-button" id="logsRefresh">↻ Refresh logs</button></div>
+        <div id="logList" class="log-list"><div class="empty">No activity recorded yet.</div></div>
+      </section>
+      <footer><span>Mini Linux Shell · Educational prototype</span><span>Built with C, POSIX, Python, Flask & JavaScript</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="/app.js"></script>
+</body>
+</html>

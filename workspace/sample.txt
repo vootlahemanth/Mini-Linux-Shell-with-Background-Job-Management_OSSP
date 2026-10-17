@@ -1,0 +1,2 @@
+Welcome to the Mini Linux Shell workspace.
+This sample file is safe to read with the dashboard command: cat sample.txt

@@ -1,0 +1,4 @@
+Automated tests were attempted in the packaging environment but could not run because Flask was not installed there.
+Install the dependency with `python3 -m pip install -r requirements.txt`, then run:
+`python3 -m unittest discover -s tests -v`
+The C shell was compiled successfully with `make` during packaging (see BUILD_CHECK.txt).
